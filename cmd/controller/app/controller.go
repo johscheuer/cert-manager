@@ -146,6 +146,8 @@ func buildControllerContext(opts *options.ControllerOptions) (*controller.Contex
 		ACMEOptions: controller.ACMEOptions{
 			HTTP01SolverImage: opts.ACMEHTTP01SolverImage,
 			DNS01Nameservers:  nameservers,
+			HTTP01LimitCPU: opts.ACMEHTTP01LimitCPU,
+			HTTP01LimitMemory: opts.ACMEHTTP01LimitMemory
 		},
 		IssuerOptions: controller.IssuerOptions{
 			ClusterIssuerAmbientCredentials: opts.ClusterIssuerAmbientCredentials,

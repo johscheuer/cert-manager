@@ -44,6 +44,8 @@ type ControllerOptions struct {
 	EnabledControllers []string
 
 	ACMEHTTP01SolverImage string
+	ACMEHTTP01LimitCPU    string
+	ACMEHTTP01LimitMemory string
 
 	ClusterIssuerAmbientCredentials bool
 	IssuerAmbientCredentials        bool
@@ -81,6 +83,8 @@ const (
 
 var (
 	defaultACMEHTTP01SolverImage = fmt.Sprintf("quay.io/jetstack/cert-manager-acmesolver:%s", util.AppVersion)
+	defaultACMEHTTP01LimitCPU    = "10m"
+	defaultACMEHTTP01LimitMemory = "64Mi"
 
 	defaultEnabledControllers = []string{
 		issuerscontroller.ControllerName,
@@ -143,6 +147,10 @@ func (s *ControllerOptions) AddFlags(fs *pflag.FlagSet) {
 	fs.StringVar(&s.ACMEHTTP01SolverImage, "acme-http01-solver-image", defaultACMEHTTP01SolverImage, ""+
 		"The docker image to use to solve ACME HTTP01 challenges. You most likely will not "+
 		"need to change this parameter unless you are testing a new feature or developing cert-manager.")
+	fs.StringVar(&s.ACMEHTTP01LimitCPU, "acme-http01-solver-limit-cpu", defaultACMEHTTP01LimitCPU, ""+
+		"foo")
+	fs.StringVar(&s.ACMEHTTP01LimitMemory, "acme-http01-solver-limit-memory", defaultACMEHTTP01LimitMemory, ""+
+		"bar")
 
 	fs.BoolVar(&s.ClusterIssuerAmbientCredentials, "cluster-issuer-ambient-credentials", defaultClusterIssuerAmbientCredentials, ""+
 		"Whether a cluster-issuer may make use of ambient credentials for issuers. 'Ambient Credentials' are credentials drawn from the environment, metadata services, or local files which are not explicitly configured in the ClusterIssuer API object. "+

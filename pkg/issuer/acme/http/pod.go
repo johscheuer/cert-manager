@@ -151,12 +151,12 @@ func (s *Solver) buildPod(crt *v1alpha1.Certificate, ch v1alpha1.ACMEOrderChalle
 					},
 					Resources: corev1.ResourceRequirements{
 						Requests: corev1.ResourceList{
-							corev1.ResourceCPU:    resource.MustParse("10m"),
-							corev1.ResourceMemory: resource.MustParse("64Mi"),
+							corev1.ResourceCPU:    resource.MustParse(s.ACMEOptions.HTTP01LimitCPU),
+							corev1.ResourceMemory: resource.MustParse(s.ACMEOptions.HTTP01LimitMemory),
 						},
 						Limits: corev1.ResourceList{
-							corev1.ResourceCPU:    resource.MustParse("10m"),
-							corev1.ResourceMemory: resource.MustParse("64Mi"),
+							corev1.ResourceCPU:    resource.MustParse(s.ACMEOptions.HTTP01LimitCPU),
+							corev1.ResourceMemory: resource.MustParse(s.ACMEOptions.HTTP01LimitMemory),
 						},
 					},
 					Ports: []corev1.ContainerPort{

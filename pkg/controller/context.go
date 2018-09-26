@@ -83,6 +83,12 @@ type ACMEOptions struct {
 	// DNS01Nameservers is a list of nameservers to use when performing self-checks
 	// for ACME DNS01 validations.
 	DNS01Nameservers []string
+
+	// TODO docs
+	HTTP01LimitCPU string
+
+	// TODO docs
+	HTTP01LimitMemory string
 }
 
 type IngressShimOptions struct {
